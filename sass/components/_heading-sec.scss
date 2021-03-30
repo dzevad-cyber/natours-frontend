@@ -1,0 +1,23 @@
+.heading-sec {
+  justify-self: inherit;
+
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(
+    to right,
+    var(--clr-prm-light),
+    var(--clr-prm-dark)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  transition: all 0.3s ease-out;
+  text-align: center;
+
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(var(--rgb-black), 0.2);
+  }
+}
