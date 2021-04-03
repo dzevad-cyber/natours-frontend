@@ -1,3 +1,5 @@
+@use '../abstract/mixins' as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
 :root {
@@ -6,11 +8,16 @@
   --clr-prm-light: #7ed56f;
   --clr-prm-dark: #28b485;
   --clr-grey-dark: #777;
+  --clr-grey-dark-2: #999;
   --clr-white: #fff;
   --clr-black: #000;
 
   --clr-grey-light-1: #f7f7f7;
   --clr-grey-light-2: #eee;
+
+  --clr-grey-dark-1: #777;
+  --clr-grey-dark-2: #999;
+  --clr-grey-dark-3: #333;
 
   --clr-sec-light: #ffb900;
   --clr-sec-dark: #ff7730;
@@ -41,6 +48,18 @@
 
 html {
   font-size: 62.5%;
+
+  @include mq(tab-p) {
+    font-size: 50%; // 1rem = 8px 8/16 = 50%
+  }
+
+  @include mq(tab-l) {
+    font-size: 56.25%; //1rem = 9px 9/16 = 56.25%
+  }
+
+  @include mq(big-d) {
+    font-size: 75%; //1rem = 12px, 12/16 = 75%
+  }
 }
 
 body {
@@ -49,6 +68,10 @@ body {
   line-height: 1.7;
   color: var(--clr-grey-dark);
   padding: 3rem;
+
+  @include mq(tab-p) {
+    padding: 0;
+  }
 }
 
 ul {
@@ -67,4 +90,9 @@ p {
 ::selection {
   color: var(--clr-white);
   background-color: var(--clr-prm);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }

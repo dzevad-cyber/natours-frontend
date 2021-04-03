@@ -2,6 +2,8 @@
 @use 'base/animations';
 @use 'base/utilities';
 
+@use 'abstract/mixins';
+
 @use 'components/header';
 @use 'components/button';
 @use 'components/heading-primary';
@@ -9,5 +11,10 @@
 @use 'components/heading-ter';
 @use 'components/card';
 @use 'components/card-flip';
+@use 'components/bg-video';
+@use 'components/form';
+@use 'components/footer';
+@use 'components/nav-mob';
+@use 'components/popup';
 
 @use 'pages/home';

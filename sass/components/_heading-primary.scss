@@ -1,3 +1,5 @@
+@use './../abstract/mixins' as *;
+
 .heading-primary {
   color: var(--clr-white);
   text-transform: uppercase;
@@ -13,6 +15,11 @@
     justify-items: center;
     text-align: center;
     animation: moveInLeft 1s ease-out;
+
+    @include mq(phone) {
+      letter-spacing: 1rem;
+      font-size: 5rem;
+    }
   }
 
   &--sub {
@@ -20,5 +27,9 @@
     font-weight: 700;
     letter-spacing: 1.75rem;
     animation: moveInRight 1s ease-out;
+
+    @include mq(phone) {
+      letter-spacing: 0.5rem;
+    }
   }
 }

@@ -1,3 +1,5 @@
+@use './../abstract/mixins' as *;
+
 .heading-sec {
   justify-self: inherit;
 
@@ -19,5 +21,13 @@
   &:hover {
     transform: skewY(2deg) skewX(15deg) scale(1.1);
     text-shadow: 0.5rem 1rem 2rem rgba(var(--rgb-black), 0.2);
+  }
+
+  @include mq(tab-p) {
+    font-size: 3rem;
+  }
+
+  @include mq(phone) {
+    font-size: 2.5rem;
   }
 }

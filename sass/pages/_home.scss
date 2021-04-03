@@ -1,3 +1,5 @@
+@use './../abstract/mixins' as *;
+
 .about {
   background-color: var(--clr-grey-light-1);
   padding: 25rem 1rem;
@@ -9,8 +11,14 @@
     'about-text about-imgs';
   grid-row-gap: 8rem;
   grid-column-gap: 4rem;
+  grid-template-columns: 40% 40%;
+  justify-content: space-around;
 
-  grid-template-columns: 1fr 1fr;
+  @include mq(tab-p) {
+    grid-template-areas: 'heading heading' 'about-text about-text' 'about-imgs about-imgs';
+    grid-template-rows: min-content 1fr 20%;
+    padding-bottom: 30rem;
+  }
 
   &__heading-wrapper {
     grid-area: heading;
@@ -21,11 +29,10 @@
     grid-area: about-text;
     display: grid;
     grid-row-gap: 3rem;
-  }
 
-  &__photos {
-    grid-area: about-imgs;
-    background-color: green;
+    @include mq(tab-p) {
+      text-align: center;
+    }
   }
 
   &__btn {
@@ -41,6 +48,13 @@
 .photos {
   position: relative;
   max-width: 550px;
+  grid-area: about-imgs;
+
+  @include mq(tab-p) {
+    width: 550px;
+    justify-self: center;
+    width: 100%;
+  }
 
   &__photo {
     position: absolute;
@@ -51,14 +65,29 @@
     &--1 {
       top: -2rem;
       left: 0;
+
+      @include mq(tab-p) {
+        top: 0;
+        left: 20%;
+      }
     }
     &--2 {
       top: 2rem;
       right: 0;
+
+      @include mq(tab-p) {
+        top: 0;
+        right: 20%;
+      }
     }
     &--3 {
       top: 10rem;
       left: 20%;
+
+      @include mq(tab-p) {
+        top: 0;
+        left: 35%;
+      }
     }
 
     &:hover {
@@ -66,6 +95,10 @@
       transform: scale(1.05) translateY(-0.5rem);
       box-shadow: 0 2.5rem 4rem rgba(var(--rgb-black), 0.5);
       z-index: 20;
+
+      @include mq(tab-p) {
+        outline: none;
+      }
     }
   }
 
@@ -89,11 +122,8 @@
 
   &__row {
     transform: skewY(7deg);
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(auto, 250px));
-    grid-row-gap: 3rem;
-    grid-column-gap: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
   }
 }
@@ -105,11 +135,153 @@
 
   display: grid;
   grid-row-gap: 10rem;
+  justify-items: center;
 
   &__cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(auto, 300px));
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    grid-column-gap: 2rem;
+  }
+}
+
+.stories {
+  display: grid;
+  grid-row-gap: 5rem;
+  justify-items: center;
+  padding: 10rem 0;
+  position: relative;
+}
+
+.story {
+  padding: 3rem;
+  background-color: rgba(var(--rgb-white), 0.6);
+  border-radius: 3px;
+  transform: skewX(-12deg);
+  box-shadow: 0 3rem 6rem var(--rgb-black);
+  font-size: 1.6rem;
+  width: 75%;
+
+  @include mq(phone) {
+    display: grid;
+    grid-row-gap: 2rem;
+    justify-items: center;
+
+    transform: skewX(0deg);
+  }
+
+  &__about {
+    transform: skewX(12deg);
+
+    @include mq(phone) {
+      transform: skewX(0deg);
+      text-align: center;
+    }
+  }
+
+  &__img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.5);
+    transition: all 0.5s ease;
+  }
+
+  &__name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-size: 1.7rem;
+    opacity: 0;
+    transition: all 0.5s ease;
+    text-transform: uppercase;
+    color: var(--clr-white);
+    text-align: center;
+  }
+
+  &__img-box {
+    float: left;
+    margin-right: 3rem;
+    position: relative;
+    shape-outside: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    width: 15rem;
+    height: 15rem;
+    transform: skewX(12deg);
+    margin-bottom: 1rem;
+    overflow: hidden;
+
+    @include mq(phone) {
+      transform: skewX(0deg);
+    }
+  }
+
+  &__heading {
+    margin-bottom: 1.5rem;
+  }
+
+  &:hover &__img-box &__img {
+    transform: scale(1);
+    filter: blur(3px) brightness(80%);
+  }
+
+  &:hover &__img-box &__name {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// BOOKING SECTION
+.booking {
+  padding: 15rem 1rem;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--clr-prm-light),
+    var(--clr-prm-dark)
+  );
+
+  &__btn-box {
+    margin-top: 5rem;
+    display: grid;
+    justify-items: center;
+  }
+
+  &__inner {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 3px;
+    background-image: linear-gradient(
+        105deg,
+        rgba(var(--rgb-white), 0.9) 0%,
+        rgba(var(--rgb-white), 0.9) 50%,
+        transparent 50%
+      ),
+      url('../img/nat-10.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    @include mq(tab-p) {
+      background-image: linear-gradient(
+          105deg,
+          rgba(var(--rgb-white), 0.9) 0%,
+          rgba(var(--rgb-white), 0.9) 70%,
+          transparent 70%
+        ),
+        url('../img/nat-10.jpg');
+    }
+
+    @include mq(phone) {
+      background-image: linear-gradient(
+          105deg,
+          rgba(var(--rgb-white), 0.9) 0%,
+          rgba(var(--rgb-white), 0.9) 100%,
+          // transparent 50%
+        ),
+        url('../img/nat-10.jpg');
+    }
   }
 }
