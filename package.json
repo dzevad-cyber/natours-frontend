@@ -9,7 +9,8 @@
     "sass:prefix": "postcss --use autoprefixer -b 'last 3 versions' ./css/style.css -o ./css/style.css",
     "sass:compress": "sass ./css/style.css:css/style.css --style=compressed --no-source-map",
     "start": "npm-run-all --parallel live-server watch:sass",
-    "build": "npm-run-all sass:prefix sass:compress"
+    "build": "npm-run-all sass:prefix sass:compress",
+    "dev": "parcel src/index.html --open"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "autoprefixer": "^10.2.5",
     "live-server": "^1.2.1",
     "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.5",
     "postcss": "^8.2.9",
     "postcss-cli": "^8.3.1",
     "sass": "^1.32.8"
